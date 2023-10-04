@@ -141,6 +141,12 @@ class TextFieldConfiguration {
   /// Same as [TextField.cursorWidth](https://docs.flutter.io/flutter/material/TextField/cursorWidth.html)
   final double cursorWidth;
 
+  /// How tall the cursor will be.
+  ///
+  /// If this property is null, [RenderEditable.preferredLineHeight] will be used.
+  /// Same as [EditableText.cursorHeight]
+  final double? cursorHeight;
+
   /// The appearance of the keyboard.
   ///
   /// Same as [TextField.keyboardAppearance](https://docs.flutter.io/flutter/material/TextField/keyboardAppearance.html)
@@ -180,6 +186,11 @@ class TextFieldConfiguration {
 
   final List<String>? autofillHints;
 
+  /// An interface for building the selection UI, to be provided by the
+  /// implementer of the toolbar widget.
+  /// Same as [TextField.selectionControls]
+  final TextSelectionControls? selectionControls;
+
   /// Creates a TextFieldConfiguration
   const TextFieldConfiguration({
     this.decoration = const InputDecoration(),
@@ -215,6 +226,8 @@ class TextFieldConfiguration {
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.enableInteractiveSelection = true,
     this.autofillHints,
+    this.cursorHeight,
+    this.selectionControls,
   });
 
   /// Copies the [TextFieldConfiguration] and only changes the specified
@@ -251,6 +264,8 @@ class TextFieldConfiguration {
     TextInputAction? textInputAction,
     bool? enableInteractiveSelection,
     List<String>? autofillHints,
+    double? cursorHeight,
+    TextSelectionControls? selectionControls,
   }) =>
       TextFieldConfiguration(
         decoration: decoration ?? this.decoration,
@@ -282,8 +297,9 @@ class TextFieldConfiguration {
         textCapitalization: textCapitalization ?? this.textCapitalization,
         textInputAction: textInputAction ?? this.textInputAction,
         textDirection: textDirection ?? this.textDirection,
-        enableInteractiveSelection:
-            enableInteractiveSelection ?? this.enableInteractiveSelection,
+        enableInteractiveSelection: enableInteractiveSelection ?? this.enableInteractiveSelection,
         autofillHints: autofillHints ?? this.autofillHints,
+        cursorHeight: cursorHeight ?? this.cursorHeight,
+        selectionControls: selectionControls ?? this.selectionControls,
       );
 }
